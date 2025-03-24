@@ -1,14 +1,29 @@
 # GoldiRAGs (Self-Retrieval Augmented Generation)
 
-GoldiRAGs는 모델이 검색한 문서의 관련성과 지원성을 자체적으로 평가하고, 최종 응답 생성에 이 문서들을 사용할지 여부를 결정하는 시스템입니다.
+GoldiRAGs는 모델이 검색한 문서의 관련성과 지원성을 자체적으로 평가하고, 최종 응답 생성에 이 문서들을 사용할지 여부를 결정하는 시스템입니다. 이 프로젝트는 [Self-RAG](https://github.com/AkariAsai/self-rag)와 [CRAG](https://github.com/HuskyInSalt/CRAG) 논문을 기반으로 하여 발전시킨 시스템입니다.
 
+## GoldiRAGs, Self-RAG, CRAG 비교
+
+GoldiRAGs는 Self-RAG와 CRAG의 장점을 결합하고 몇 가지 중요한 개선사항을 추가했습니다:
+
+- **Self-RAG**는 모델이 검색된 문서의 관련성과 사용 여부를 스스로 판단하는 기본 개념을 제시했습니다.
+- **CRAG**는 검색과 생성을 더 효과적으로 결합하여 복잡한 질문에 대한 답변 품질을 향상시켰습니다.
+- **GoldiRAGs**는 이러한 접근법을 더욱 발전시켜 다차원 관련성 평가, 문서 관련성 구간 처리, 타겟팅된 질문 재작성, 적응형 증강 종료 조건 등을 도입했습니다.
+
+### Self-RAG 접근 방식
+![Self-RAG 방법론 개요](images/self-rag%20method%20overview.png)
+
+### CRAG 접근 방식  
+![CRAG 방법론 개요](images/CRAG%20Method%20Overview.png)
+
+### GoldiRAGs 접근 방식
 ![GoldiRAGs 시스템 개요](images/image-216.png)
 ![GoldiRAGs 문서 처리 과정](images/image-219.png)
 ![GoldiRAGs 관련성 평가 모델](images/image-217.png)
 
 ## 개선된 GoldiRAGs 특징
 
-이 프로젝트는 기존 Self-RAG 접근 방식을 다음과 같이 개선했습니다:
+이 프로젝트는 기존 Self-RAG와 CRAG 접근 방식을 다음과 같이 개선했습니다:
 
 1. **다차원 관련성 평가**:
    - 단순 이분법적 평가(관련/비관련) 대신 5가지 평가 기준 도입
@@ -152,6 +167,13 @@ GoldiRAGs는 다양한 벤치마크에서 뛰어난 성능을 보여주었습니
 
 ![CRAG 평가 결과](images/CRAG%20Evaluation.png)
 
+## 사용 모델
+
+GoldiRAGs는 다음 LLM 모델을 사용합니다:
+
+- [Self-RAG 모델 (selfrag/selfrag_llama2_7b)](https://huggingface.co/selfrag/selfrag_llama2_7b)
+- [LLaMA2 베이스라인 모델 (meta-llama/Llama-2-7b-hf)](https://huggingface.co/meta-llama/Llama-2-7b-hf)
+
 ## 평가 데이터셋 및 실험 환경
 
 GoldiRAGs는 Self-RAG와 동일한 평가 데이터셋과 환경에서 테스트되었습니다. 이를 통해 기존 방법과의 직접적인 성능 비교가 가능합니다.
@@ -245,5 +267,7 @@ python run_goldirags.py \
 
 ## 참고 자료
 
+- [Self-RAG GitHub](https://github.com/AkariAsai/self-rag)
 - [Self-RAG 논문](https://arxiv.org/abs/2310.11511)
+- [CRAG GitHub](https://github.com/HuskyInSalt/CRAG)
 - [LangChain 문서](https://www.langchain.com/) 
