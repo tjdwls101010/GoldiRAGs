@@ -2,7 +2,7 @@
 
 GoldiRAGs는 모델이 검색한 문서의 관련성과 지원성을 자체적으로 평가하고, 최종 응답 생성에 이 문서들을 사용할지 여부를 결정하는 시스템입니다. "GoldiRAGs"라는 이름은 경제학의 "골디락스(Goldilocks)" 개념에서 영감을 받았습니다. 골디락스 상태는 "너무 뜨겁지도, 너무 차갑지도 않은" 최적의 균형 상태를 의미합니다. 이 개념을 적용하여, GoldiRAGs는 관련성이 애매한 문서들에 대해 반복적 검색(iterative-retrieval)을 통해 최적의 증강 방식을 찾는 것을 목표로 합니다. 이 프로젝트는 [RAG](https://arxiv.org/abs/2005.11401), [Self-RAG](https://github.com/AkariAsai/self-rag)와 [CRAG](https://github.com/HuskyInSalt/CRAG) 논문을 기반으로 하여 발전시킨 시스템입니다.
 
-![골디락스 경제](images/Goldilocks%20Economy.jpg)
+![골디락스 경제 개념](images/Goldilocks%20Economy.jpg)
 
 ## RAG, Self-RAG, CRAG, GoldiRAGs 비교
 
