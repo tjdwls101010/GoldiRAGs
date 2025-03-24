@@ -144,11 +144,9 @@ if __name__ == "__main__":
 
 ## 평가 결과
 
-다양한 데이터셋에서의 GoldiRAGs 성능 평가 결과입니다:
+GoldiRAGs는 다양한 벤치마크에서 뛰어난 성능을 보여주었습니다. 아래는 CRAG와의 비교 평가 결과입니다:
 
-![평가 결과](images/evaluation_results.png)
-
-*표 1: PopQA, Bio(FactScore), Pub, ARC 데이터셋 성능 평가 결과. 굵은 숫자는 모든 방법 및 LLM 중 최고 성능, 회색 굵은 숫자는 특정 LLM 사용 시 최고 성능을 나타냅니다.*
+![CRAG 평가 결과](images/CRAG%20Evaluation.png)
 
 ## 참고 자료
 
