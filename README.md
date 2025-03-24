@@ -14,7 +14,7 @@ GoldiRAGs는 Self-RAG와 CRAG의 장점을 결합하고 몇 가지 중요한 개
 ![Self-RAG 방법론 개요](images/self-rag%20method%20overview.png)
 
 ### CRAG 접근 방식  
-![CRAG 방법론 개요](images/CRAG%20Method%20Overview.png)
+![CRAG 방법론 개요](images/CRAG_Method_Overview.png)
 
 ### GoldiRAGs 접근 방식
 ![GoldiRAGs 시스템 개요](images/image-216.png)
