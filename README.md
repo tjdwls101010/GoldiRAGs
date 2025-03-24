@@ -148,6 +148,97 @@ GoldiRAGs는 다양한 벤치마크에서 뛰어난 성능을 보여주었습니
 
 ![CRAG 평가 결과](images/CRAG%20Evaluation.png)
 
+## 평가 데이터셋 및 실험 환경
+
+GoldiRAGs는 Self-RAG와 동일한 평가 데이터셋과 환경에서 테스트되었습니다. 이를 통해 기존 방법과의 직접적인 성능 비교가 가능합니다.
+
+### 데이터셋
+
+Self-RAG에서 사용된 다음 데이터셋들을 활용했습니다:
+
+#### 단답형 데이터셋:
+- **ARC Challenge**: 과학 관련 질문 답변 데이터셋 (`eval_data/arc_challenge_processed.jsonl`)
+- **PubHealth**: 의학 정보의 신뢰성 검증 데이터셋 (`eval_data/health_claims_processed.jsonl`)
+- **TriviaQA & PopQA**: 일반 지식 질의응답 데이터셋
+
+#### 장문형 데이터셋:
+- **ASQA (Ambiguous Questions)**: 모호한 질문에 대한 장문 답변 데이터셋 (`eval_data/asqa_eval_gtr_top100.json`)
+- **FactScore**: 생성된 텍스트의 사실성 평가 데이터셋 (`eval_data/factscore_unlabeled_alpaca_13b_retrieval.jsonl`)
+
+### 평가 환경 설정
+
+1. 데이터셋 다운로드:
+```bash
+# Self-RAG 평가 데이터셋 다운로드
+wget https://drive.google.com/file/d/1TLKhWjez63H4uBtgCxyoyJsZi-IMgnDb/view?usp=share_link -O eval_data.zip
+unzip eval_data.zip -d eval_data
+```
+
+2. 사용 모델:
+```
+# Self-RAG 모델
+selfrag/selfrag_llama2_7b
+
+# 기본 LLaMA 모델 (베이스라인 비교용)
+meta-llama/Llama-2-7b-hf
+```
+
+### 단답형 평가 실행 방법
+
+ARC Challenge 데이터셋 평가:
+```bash
+python run_goldirags.py \
+  --model_name selfrag/selfrag_llama2_7b \
+  --input_file eval_data/arc_challenge_processed.jsonl \
+  --max_new_tokens 50 --threshold 0.2 \
+  --output_file results/goldirags_arc_result.jsonl \
+  --metric match --ndocs 5 \
+  --task arc_c
+```
+
+PubHealth 데이터셋 평가:
+```bash
+python run_goldirags.py \
+  --model_name selfrag/selfrag_llama2_7b \
+  --input_file eval_data/health_claims_processed.jsonl \
+  --max_new_tokens 50 --threshold 0.2 \
+  --output_file results/goldirags_pubhealth_result.jsonl \
+  --metric match --ndocs 5 \
+  --task fever
+```
+
+### 장문형 평가 실행 방법
+
+ASQA 데이터셋 평가:
+```bash
+python run_goldirags.py \
+  --model_name selfrag/selfrag_llama2_7b \
+  --ndocs 5 --max_new_tokens 300 --threshold 0.2 \
+  --task asqa --input_file eval_data/asqa_eval_gtr_top100.json \
+  --output_file results/goldirags_asqa_result.jsonl \
+  --max_depth 7 --mode always_retrieve
+```
+
+FactScore 데이터셋 평가:
+```bash
+python run_goldirags.py \
+  --model_name selfrag/selfrag_llama2_7b \
+  --ndocs 5 --max_new_tokens 300 --threshold 0.2 \
+  --task factscore --input_file eval_data/factscore_unlabeled_alpaca_13b_retrieval.jsonl \
+  --output_file results/goldirags_factscore_result.jsonl \
+  --max_depth 7
+```
+
+### 평가 파라미터
+
+주요 평가 파라미터:
+- `threshold` (기본값 0.2): 적응형 검색 빈도를 제어하는 임계값
+- `max_depth` (기본값 7): 검색 최대 깊이 (Self-RAG 논문의 T 파라미터)
+- `ndocs` (기본값 5): 검색할 문서 수
+- `w_rel` (기본값 1.0): 관련성 평가 가중치
+- `w_sup` (기본값 1.0): 지원성 평가 가중치
+- `w_use` (기본값 0.5): 유용성 평가 가중치
+
 ## 참고 자료
 
 - [Self-RAG 논문](https://arxiv.org/abs/2310.11511)
