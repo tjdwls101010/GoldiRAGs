@@ -1,0 +1,12 @@
+Self-RAG(Self-Reflective Retrieval Augmented Generation)는 2023년에 소개된 검색 증강 생성 기법입니다.
+기존 RAG(Retrieval Augmented Generation) 시스템과 달리, Self-RAG는 모델이 자체적으로 검색된 문서의 관련성과 유용성을 평가하고, 최종 응답 생성에 이를 사용할지 여부를 결정하는 능력을 가지고 있습니다.
+
+Self-RAG의 주요 구성 요소는 다음과 같습니다:
+
+1. Retrieve-Token: 사용자 쿼리와 관련된 문서를 검색합니다.
+2. ISREL-Token: 검색된 문서의 관련성을 평가합니다. 이 토큰은 문서가 쿼리와 관련이 있는지 여부를 결정합니다.
+3. ISSUP-Token: 문서가 응답을 지원하는지 평가합니다. 이 토큰은 문서가 응답의 내용을 사실적으로 지원하는지 여부를 결정합니다.
+4. ISUSE-Token: 최종 응답 생성에 문서를 사용할지 결정합니다. 이 토큰은 ISREL과 ISSUP의 결과를 바탕으로 결정됩니다.
+5. Generator: 필터링된 문서를 바탕으로 최종 응답을 생성합니다.
+
+Self-RAG는 응답의 품질을 향상시키고, 환각(hallucination) 문제를 줄이는 데 효과적입니다. 모델이 스스로 검색된 정보를 평가하고 필터링하기 때문에, 관련성이 낮거나 부정확한 정보를 배제할 수 있습니다. 
