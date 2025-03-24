@@ -2,6 +2,10 @@
 
 GoldiRAGs는 모델이 검색한 문서의 관련성과 지원성을 자체적으로 평가하고, 최종 응답 생성에 이 문서들을 사용할지 여부를 결정하는 시스템입니다.
 
+![GoldiRAGs 시스템 개요](images/image-216.png)
+![GoldiRAGs 문서 처리 과정](images/image-218.png)
+![GoldiRAGs 관련성 평가 모델](images/image-217.png)
+
 ## 개선된 GoldiRAGs 특징
 
 이 프로젝트는 기존 Self-RAG 접근 방식을 다음과 같이 개선했습니다:
